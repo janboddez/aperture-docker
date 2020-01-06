@@ -2,4 +2,5 @@
 !.gitignore
 !.env.example
 !README.md
+!build
 !build/*
