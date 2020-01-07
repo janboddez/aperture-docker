@@ -8,15 +8,15 @@ if [ ! -e /var/www/html/aperture/.env ]; then
 
     cd aperture
 
+    composer install
+
     cp .env.example .env
 
     chown -R www-data:www-data .
 
-    cd /var/www/html/aperture
-
     sed -i "s|APP_URL=http://localhost|APP_URL=${WATCHTOWER_CB:=https\://aperture.example.org}|g" .env
     sed -i "s|WATCHTOWER_URL=https://watchtower.dev|WATCHTOWER_URL=${WATCHTOWER_URL:=https\://watchtower.example.org}|g" .env
-    sed -i "s|WATCHTOWER_CB=https://aperture.dev|WATCHTOWER_CB=${WATCHTOWER_CB:=https\://aperture.example.org}|g" .env
+    sed -i "s|WATCHTOWER_CB=https://aperture.dev|WATCHTOWER_CB=${WATCHTOWER_CB}|g" .env
     sed -i "s|WATCHTOWER_TOKEN=1234|WATCHTOWER_TOKEN=${WATCHTOWER_TOKEN:=1234}|g" .env
 
     sed -i "s|IMG_PROXY_URL=https://aperture-proxy.p3k.io/|IMG_PROXY_URL=${IMG_PROXY_URL:=https\://camo.example.org/}|g" .env

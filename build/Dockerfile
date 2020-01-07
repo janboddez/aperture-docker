@@ -1,3 +1,5 @@
+FROM composer:latest AS composer
+
 FROM php:7.3-fpm-alpine
 
 RUN docker-php-ext-install pdo_mysql \
@@ -9,6 +11,8 @@ RUN docker-php-ext-install pdo_mysql \
     && docker-php-ext-enable imagick \
     && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
     && apk del .phpize-deps
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 COPY docker-entrypoint.sh /usr/local/bin
 
