@@ -1,6 +1,6 @@
 FROM composer:latest AS composer
 
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 RUN docker-php-ext-install opcache pdo_mysql \
     && apk --update add --no-cache git \
